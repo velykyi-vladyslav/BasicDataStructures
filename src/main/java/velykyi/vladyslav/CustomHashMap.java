@@ -67,7 +67,7 @@ public class CustomHashMap<K, V> {
         return null;
     }
 
-    public Entry<K, V> remove(K key) {
+    public V remove(K key) {
         int hash = key.hashCode() & size;
         Entry<K, V> entry = table[hash];
 
@@ -80,7 +80,7 @@ public class CustomHashMap<K, V> {
             table[hash] = entry.next;
             entry.next = null;
 
-            return entry;
+            return entry.getValue();
         }
 
         //As it is the second node - init prev node and point the current head to the next node
@@ -91,7 +91,7 @@ public class CustomHashMap<K, V> {
             if (entry.getKey() == key) {
                 prev.next = entry.next;
                 entry.next = null;
-                return entry;
+                return entry.getValue();
             }
 
             // prev now == current
